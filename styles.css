@@ -1,0 +1,266 @@
+:root {
+  --ink: #1c1712;
+  --paper: #f3ece1;
+  --paper-2: #e8ddd0;
+  --rule: rgba(28, 23, 18, 0.12);
+  --rust: #9a3b22;
+  --muted: #6b5f52;
+  --card: #faf6ef;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: 0.01em;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wash {
+  pointer-events: none;
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(50% 40% at 80% 0%, rgba(154,59,34,0.08), transparent 50%),
+    radial-gradient(40% 30% at 10% 90%, rgba(28,23,18,0.06), transparent 55%);
+  animation: drift 28s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(-3%, 2%, 0) scale(1.04); }
+}
+
+.top, main, footer { position: relative; z-index: 1; }
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 6vw 0;
+}
+.mark {
+  font-family: Fraunces, serif;
+  font-weight: 560;
+  font-size: 1.35rem;
+  text-decoration: none;
+  color: inherit;
+}
+nav { display: flex; gap: 0.4rem; align-items: center; }
+
+button, .solid, .ghost {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+.ghost, .solid {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+}
+.ghost { color: var(--ink); }
+.ghost:hover { background: rgba(28,23,18,0.06); }
+.solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.solid:hover { background: #2a231c; }
+.wide { width: 100%; margin-top: 0.5rem; }
+
+.hero {
+  padding: 7vw 6vw 3vw;
+  max-width: 58rem;
+}
+.kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 0 0 1rem;
+}
+h1 {
+  font-family: Fraunces, serif;
+  font-weight: 560;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  margin: 0 0 1.2rem;
+  letter-spacing: -0.03em;
+}
+.lede {
+  max-width: 36rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.signal, .wall, .desk { padding: 2rem 6vw 3rem; }
+.label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+}
+.hour-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 2rem 2.1rem 1.6rem;
+  max-width: 40rem;
+  transform-origin: left top;
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hour-card h2 {
+  font-family: Fraunces, serif;
+  font-size: 1.7rem;
+  margin: 0 0 0.7rem;
+}
+.hour-card p { margin: 0 0 1.2rem; line-height: 1.6; }
+.hour-card time { color: var(--muted); font-size: 0.86rem; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.4rem;
+}
+.section-head h2 {
+  font-family: Fraunces, serif;
+  font-size: 1.6rem;
+  margin: 0;
+}
+.section-head p, .muted, .deskHint { color: var(--muted); margin: 0; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.25rem 1rem;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.card p { margin: 0 0 0.8rem; line-height: 1.5; white-space: pre-wrap; }
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.pill {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+.compose {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+textarea {
+  width: 100%;
+  min-height: 8rem;
+  resize: vertical;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(28,23,18,0.28);
+  display: grid;
+  place-items: end center;
+  animation: fade 0.25s ease;
+}
+.sheet-inner {
+  width: min(420px, 100%);
+  background: var(--paper);
+  padding: 1.6rem 1.5rem 1.8rem;
+  border-top: 1px solid var(--rule);
+  animation: slide 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.close {
+  float: right;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.sheet h2 { font-family: Fraunces, serif; margin: 0 0 0.4rem; }
+label {
+  display: block;
+  margin: 0.85rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+input {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+  font: inherit;
+  color: inherit;
+}
+.err { color: var(--rust); min-height: 1.2rem; font-size: 0.88rem; }
+.hidden { display: none !important; }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 6vw 2.4rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px) rotate(-0.3deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide {
+  from { transform: translateY(24px); }
+  to { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 14vw; }
+  .section-head { flex-direction: column; }
+  .row { flex-direction: column; align-items: stretch; }
+}

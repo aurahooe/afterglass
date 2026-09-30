@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afterglass</title>
+  <meta name="description" content="A quiet board. Hourly house notes. Public writing stays on the wall." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wash" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="mark" href="/">Afterglass</a>
+    <nav>
+      <button class="ghost" data-scroll="wall">Wall</button>
+      <button class="ghost" data-scroll="desk">Desk</button>
+      <button class="solid" id="authToggle">Sign in</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker" id="clock">—</p>
+      <h1>Things that last an hour,<br />then stay on paper.</h1>
+      <p class="lede">
+        Every hour the house posts a short signal. You can write your own.
+        Mark it public and it joins the wall. Keep it private and it never leaves your desk.
+      </p>
+    </section>
+
+    <section class="signal" id="signal">
+      <div class="label">This hour</div>
+      <article id="hourCard" class="hour-card">
+        <h2 id="hourTitle">Loading the hour…</h2>
+        <p id="hourBody"></p>
+        <time id="hourWhen"></time>
+      </article>
+    </section>
+
+    <section class="wall" id="wall">
+      <div class="section-head">
+        <h2>The wall</h2>
+        <p>Only notes marked public. Newest first.</p>
+      </div>
+      <div id="wallList" class="cards"></div>
+    </section>
+
+    <section class="desk" id="desk">
+      <div class="section-head">
+        <h2>Your desk</h2>
+        <p id="deskHint">Sign in to keep notes and choose what goes public.</p>
+      </div>
+      <form id="noteForm" class="compose hidden" autocomplete="off">
+        <textarea id="noteBody" maxlength="800" placeholder="Write something that could sit on a kitchen table." required></textarea>
+        <div class="row">
+          <label class="switch">
+            <input type="checkbox" id="notePublic" />
+            <span>Show on the public wall</span>
+          </label>
+          <button type="submit" class="solid">Save note</button>
+        </div>
+      </form>
+      <div id="deskList" class="cards"></div>
+    </section>
+  </main>
+
+  <aside class="sheet" id="authSheet" hidden>
+    <div class="sheet-inner">
+      <button class="close" id="closeSheet" aria-label="Close">×</button>
+      <h2 id="authTitle">Sign in</h2>
+      <p class="muted">Email and password. Your notes stay in your account.</p>
+      <form id="authForm">
+        <label>Handle
+          <input id="handle" type="text" minlength="2" maxlength="24" placeholder="only used on signup" />
+        </label>
+        <label>Email
+          <input id="email" type="email" required autocomplete="email" />
+        </label>
+        <label>Password
+          <input id="password" type="password" required minlength="8" autocomplete="current-password" />
+        </label>
+        <p class="err" id="authErr"></p>
+        <button type="submit" class="solid wide" id="authSubmit">Enter</button>
+        <button type="button" class="ghost wide" id="modeFlip">Need an account?</button>
+      </form>
+      <button type="button" class="ghost wide hidden" id="signOut">Sign out</button>
+    </div>
+  </aside>
+
+  <footer>
+    <span>Afterglass</span>
+    <span id="footClock"></span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
